@@ -83,7 +83,6 @@ public class StudentTest {
     @Test
     public void testGetContact() {
         System.out.println("Testing getContact...");
-        Student instance = null;
         int expected = 0;
         int result = std1.getContact();
         assertEquals(expected, result);
