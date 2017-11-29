@@ -28,8 +28,10 @@ public class Student {
     
    @Override
    public String toString(){
-        String str;
-       
+       String str;
+       str = "Nome: " + name 
+               + "\nBirthday: " + birthday
+               + "\nContact: " + contact;
        return str;
     }
 }
