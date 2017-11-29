@@ -11,8 +11,9 @@ import java.util.*;
  */
 public class Student {
  
-    private String nome;
-    Date dataNascimento;
+    private String name;
+    Date birthday;
+    int contact;
         
     
     public Student(){
@@ -23,8 +24,10 @@ public class Student {
     
    @Override
    public String toString(){
-        String str;
-       
+       String str;
+       str = "Nome: " + name 
+               + "\nBirthday: " + birthday
+               + "\nContact: " + contact;
        return str;
     }
 }
