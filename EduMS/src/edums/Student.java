@@ -12,12 +12,16 @@ import java.util.*;
 public class Student {
     private final int id;
     private static int idTotal = 0;
-    
+    private String name;
+    Date birthday;
+    int contact;
         
     
-    public Student(){
+    public Student(String name, Date birthday, int contact){
         this.id = idTotal++;
-        
+        this.name = name;
+        this.birthday = birthday;
+        this.contact = contact;
     }
     
     
