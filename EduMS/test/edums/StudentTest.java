@@ -34,7 +34,7 @@ public class StudentTest {
     
     @Before
     public void setUp() {
-        d1 = new Date (29,11,2017);
+        d1 = new Date (2017,11,29);
         std1 = new Student("Jon",d1, 0);
     }
     
@@ -47,12 +47,11 @@ public class StudentTest {
      */
     @Test
     public void testGetIdTotal() {
-        System.out.println("getIdTotal");
-        int expResult = 0;
-        int result = Student.getIdTotal();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Testing IdTotal...");
+        int expected = std1.getIdTotal();
+        int result = std1.getIdTotal();
+        assertEquals(expected, result);
+        
     }
 
     /**
@@ -64,7 +63,7 @@ public class StudentTest {
         String expected = "Jon";
         String result = std1.getName();
         
-        assertEquals("Names don't match", expected, result);
+        assertEquals(expected, result);
     }
 
     /**
@@ -86,13 +85,11 @@ public class StudentTest {
      */
     @Test
     public void testGetContact() {
-        System.out.println("getContact");
+        System.out.println("Testing getContact...");
         Student instance = null;
-        int expResult = 0;
-        int result = instance.getContact();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int expected = 0;
+        int result = std1.getContact();
+        assertEquals(expected, result);
     }
 
     /**
@@ -100,12 +97,11 @@ public class StudentTest {
      */
     @Test
     public void testSetContact() {
-        System.out.println("setContact");
-        int contact = 0;
-        Student instance = null;
-        instance.setContact(contact);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Testing setContact...");
+        std1.setContact(911909109);
+        int expected = 911909109;
+        int result = std1.getContact();
+        assertEquals(expected, result);
     }
 
     /**
@@ -126,12 +122,11 @@ public class StudentTest {
      */
     @Test
     public void testSetName() {
-        System.out.println("setName");
-        String name = "";
-        Student instance = null;
-        instance.setName(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Testing setName...");
+        std1.setName("Jesus");
+        String expected = "Jesus";
+        String result = std1.getName();
+        assertEquals(expected, result);
     }
 
     /**
@@ -139,13 +134,14 @@ public class StudentTest {
      */
     @Test
     public void testToString() {
-        System.out.println("toString");
-        Student instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Testing toString...");
+        String str;
+        str = "Nome: " + std1.getName() 
+               + "\nBirthday: " + std1.getBirthday()
+               + "\nContact: " + std1.getContact();
+        String expected = str;
+        String result = std1.toString();
+        assertEquals(expected, result);
     }
     
 }
