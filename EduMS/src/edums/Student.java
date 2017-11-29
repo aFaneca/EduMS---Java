@@ -24,6 +24,18 @@ public class Student {
         this.contact = contact;
     }
     
+   
+    
+    // GETTERS
+    public static int getIdTotal() {return idTotal;}
+    public String getName() {return name;}
+    public Date getBirthday() {return birthday;}
+    public int getContact() {return contact;}
+    // SETTERS
+    public void setContact(int contact) {this.contact = contact; }
+    public void setBirthday(Date birthday) {this.birthday = birthday;}
+    public void setName(String name) {this.name = name;}
+    
     
     
    @Override
@@ -34,4 +46,8 @@ public class Student {
                + "\nContact: " + contact;
        return str;
     }
+   
+   
+   
+   
 }
