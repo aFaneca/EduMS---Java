@@ -10,11 +10,13 @@ import java.util.*;
  * @author Diogo
  */
 public class Student {
- 
-
+    private final int id;
+    private static int idTotal = 0;
+    
         
     
     public Student(){
+        this.id = idTotal++;
         
     }
     
