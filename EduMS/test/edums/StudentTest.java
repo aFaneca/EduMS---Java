@@ -34,7 +34,7 @@ public class StudentTest {
     
     @Before
     public void setUp() {
-        d1 = new Date (29,11,2017);
+        d1 = new Date (2017,11,29);
         std1 = new Student("Jon",d1, 0);
     }
     
@@ -72,13 +72,10 @@ public class StudentTest {
      */
     @Test
     public void testGetBirthday() {
-        System.out.println("getBirthday");
-        Student instance = null;
-        Date expResult = null;
-        Date result = instance.getBirthday();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Testing GetBirthday...");
+        Date expected = new Date(2017,11,29);
+        Date result = std1.getBirthday();
+        assertEquals(expected, result);
     }
 
     /**
@@ -113,14 +110,13 @@ public class StudentTest {
      */
     @Test
     public void testSetBirthday() {
-        System.out.println("setBirthday");
-        Date birthday = null;
-        Student instance = null;
-        instance.setBirthday(birthday);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Testing SetBirthday...");
+        Date birthday = new Date(2000,1,1);
+        std1.setBirthday(birthday);
+        Date expected = new Date(2000,1,1);
+        Date result = std1.getBirthday();
+        assertEquals(expected, result);
     }
-
     /**
      * Test of setName method, of class Student.
      */
