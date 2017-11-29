@@ -11,7 +11,8 @@ import java.util.*;
  */
 public class Student {
  
-
+    private String nome;
+    Date dataNascimento;
         
     
     public Student(){
