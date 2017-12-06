@@ -15,14 +15,30 @@ public class School implements Serializable{
     
     private List<Student> students;
     private List<Class> classes;
+    private List<String> cUnits;
     private final String name;
     
     public School(String name){
         this.name = name;
         students = new ArrayList<Student>();
         classes = new ArrayList<Class>();
+        cUnits = new ArrayList<String>();
+        cUnits.add("Tecnologia e Arquitectura de Computadores");
+        cUnits.add("Sistemas Operativos");
+        cUnits.add("Sistemas Operativos II");
+        cUnits.add("Modelação e Design");
+        cUnits.add("Tecnologias Web");
+        cUnits.add("Programação Web");
+        cUnits.add("Conhecimento e Radiocínio");
+        cUnits.add("Programação Avançada");
+        cUnits.add("Programação Orientada a Objetos");
+        cUnits.add("Introdução às Redes de Comunicação");
+        cUnits.add("Programação Distribuída");
+        cUnits.add("Arquiteturas Móveis");
+        cUnits.add("Introdução à Inteligência Artificial");
+  
     }
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         
         
     }
@@ -74,22 +90,6 @@ public class School implements Serializable{
         return str;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-
-    public List<Class> getClasses() {
-        return classes;
-    }
-
-    public void setClasses(List<Class> classes) {
-        this.classes = classes;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -115,9 +115,11 @@ public class School implements Serializable{
         return true;
     }
 
-    
-    
-    
-    
-    
+    // SETTERS
+    public void setClasses(List<Class> classes) {this.classes = classes;}
+    public void setStudents(List<Student> students) {this.students = students;}
+    // GETTERS
+    public List<String> getcUnits() {return cUnits;}
+    public List<Class> getClasses() {return classes;}
+    public List<Student> getStudents() {return students;}
 }

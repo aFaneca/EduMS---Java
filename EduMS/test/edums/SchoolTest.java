@@ -54,19 +54,6 @@ public class SchoolTest {
     }
 
     /**
-     * Test of main method, of class School.
-     */
-  /*
-    @Test
-    public void testMain() throws Exception {
-        System.out.println("main");
-        String[] args = null;
-        School.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-*/
-    /**
      * Test of addStudent method, of class School.
      */
     @Test
@@ -123,9 +110,9 @@ public class SchoolTest {
     public void testEditStudent() {
         System.out.println("Testing editStudent...");
         st2 = st1;
-        st2.setContact(8);
+        st2.setContact(123456789);
         s.editStudent(st2);
-        int expected = 8;
+        int expected = 123456789;
         int result = st1.getContact();
         assertEquals(expected, result);
     }
@@ -144,20 +131,6 @@ public class SchoolTest {
         assertEquals(expected, result);
     }
 
-    /**
-     * Test of toString method, of class School.
-     */
-  /*  @Test
-    public void testToString() {
-        System.out.println("toString");
-        School instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-*/
     /**
      * Test of getStudents method, of class School.
      */
@@ -209,6 +182,15 @@ public class SchoolTest {
         int expected = 0;
         int result = s.getClasses().size();
 
+        assertEquals(expected, result);
+    }
+
+   
+    @Test
+    public void testGetcUnits() {
+        System.out.println("Testing getcUnits...");
+        int expected = 13;
+        int result = s.getcUnits().size();
         assertEquals(expected, result);
     }
     
