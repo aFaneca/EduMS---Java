@@ -109,6 +109,7 @@ public class StudentTest {
         Date birthday = new Date(2000,1,1);
         std1.setBirthday(birthday);
         Date expected = new Date(2000,1,1);
+        System.out.println(""+birthday);
         Date result = std1.getBirthday();
         assertEquals(expected, result);
     }

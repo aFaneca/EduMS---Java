@@ -44,27 +44,51 @@ public class Class {
     public int getMaxStudents() {
         return maxStudents;
     }
+    public Student getStudent(int id){return students.get(id);}
     
     
     public void setUnitDenomination(String unitDenomination) {
+        if(unitDenomination.length() == 0){
+            System.err.println("Empty String!");
+            return;
+        }
         this.unitDenomination = unitDenomination;
     }
     public void setTypeClass(String typeClass) {
+        if(typeClass.length() == 0 || typeClass.equals("T") && !typeClass.equals("TP") && !typeClass.equals("P")){
+            System.err.println("String different than the expected!(T,TP or P)");
+            return;
+        }
         this.typeClass = typeClass;
     }
     public void setCurricularUnit(String curricularUnit) {
+        if(curricularUnit.length() == 0){
+            System.err.println("Empty String!");
+            return;
+        }
         this.curricularUnit = curricularUnit;
     }
     public void setHoursPerClass(int hoursPerClass) {
+        if(hoursPerClass == 0){
+            System.err.println("Must be different than 0 and positive!");
+            return;
+        }
         this.hoursPerClass = hoursPerClass;
     }
     public void setClassesPerWeek(int classesPerWeek) {
+        if(classesPerWeek == 0){
+            System.err.println("Must be different than 0 and positive!");
+            return;
+        }
         this.classesPerWeek = classesPerWeek;
     }
     public void setMaxStudents(int maxStudents) {
+        if(maxStudents == 0){
+            System.err.println("Must be different than 0 and positive!");
+            return;
+        }
         this.maxStudents = maxStudents;
     }
-    
     
     
     public void associateStudent(Student st){
@@ -83,9 +107,8 @@ public class Class {
         students.remove(st);
     }
 
-    
-    
-    
-    
-    
+    @Override
+    public String toString() {
+        return "Unit Denomination: "+getUnitDenomination()+"\nType of Class: "+getTypeClass()+"\nCurricular Unit: "+getCurricularUnit()+"\nHours per Class: "+getHoursPerClass()+"\nClasses per Week: "+getClassesPerWeek()+"\nStudents:\n"+students.toString();
+    }
 }
