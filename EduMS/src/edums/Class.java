@@ -16,8 +16,11 @@ public class Class {
     String unitDenomination, typeClass, curricularUnit;
     int hoursPerClass, classesPerWeek, maxStudents;
     List<Student> students;
+    static int total = 0;
+    final int id;
 
     public Class(String unitDenomination, String typeClass, String curricularUnit, int hoursPerClass, int classesPerWeek) {
+        this.id = total++;
         this.unitDenomination = unitDenomination;
         this.typeClass = typeClass;
         this.curricularUnit = curricularUnit;
@@ -111,4 +114,28 @@ public class Class {
     public String toString() {
         return "Unit Denomination: "+getUnitDenomination()+"\nType of Class: "+getTypeClass()+"\nCurricular Unit: "+getCurricularUnit()+"\nHours per Class: "+getHoursPerClass()+"\nClasses per Week: "+getClassesPerWeek()+"\nStudents:\n"+students.toString();
     }
+
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Class other = (Class) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }    
 }

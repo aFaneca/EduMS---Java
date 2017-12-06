@@ -5,6 +5,7 @@
  */
 package edums;
 
+import java.text.ParseException;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -20,6 +21,7 @@ import static org.junit.Assert.*;
 public class StudentTest {
     Student std1;
     Date d1;
+
     public StudentTest() {
         
     }
@@ -33,9 +35,11 @@ public class StudentTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws ParseException {
         d1 = new Date (2017,11,29);
-        std1 = new Student("Jon",d1, 0);
+        d1 = Student.getDateFormat().parse("29/11/2017");
+        std1 = new Student("Jon",Student.getDateFormat().format(d1), 0);
+        
     }
     
     @After
@@ -72,8 +76,8 @@ public class StudentTest {
     @Test
     public void testGetBirthday() {
         System.out.println("Testing GetBirthday...");
-        Date expected = new Date(2017,11,29);
-        Date result = std1.getBirthday();
+        String expected = "29/11/2017";
+        String result = std1.getBirthday();
         assertEquals(expected, result);
     }
 
@@ -106,11 +110,10 @@ public class StudentTest {
     @Test
     public void testSetBirthday() {
         System.out.println("Testing SetBirthday...");
-        Date birthday = new Date(2000,1,1);
+        String birthday = "1/1/2000";
         std1.setBirthday(birthday);
-        Date expected = new Date(2000,1,1);
-        System.out.println(""+birthday);
-        Date result = std1.getBirthday();
+        String expected = "1/1/2000";
+        String result = std1.getBirthday();
         assertEquals(expected, result);
     }
     /**

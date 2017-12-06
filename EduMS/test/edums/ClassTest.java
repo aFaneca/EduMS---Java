@@ -35,7 +35,7 @@ public class ClassTest {
     public void setUp() {
         c = new Class("a","b","c",1,2);
         c.setMaxStudents(6);
-        st = new Student("Ze",new Date(2017,12,6),123456789);
+        st = new Student("Ze","06/12/2017",123456789);
     }
     
     @After
