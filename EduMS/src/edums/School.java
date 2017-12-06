@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package edums;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class School {
+public class School implements Serializable{
     
     
     private List<Student> students;
@@ -87,6 +88,31 @@ public class School {
 
     public void setClasses(List<Class> classes) {
         this.classes = classes;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final School other = (School) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
     }
 
     
