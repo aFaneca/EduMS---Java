@@ -72,7 +72,7 @@ public class Class {
         this.curricularUnit = curricularUnit;
     }
     public void setHoursPerClass(int hoursPerClass) {
-        if(hoursPerClass == 0){
+        if(hoursPerClass == 0){ 
             System.err.println("Must be different than 0 and positive!");
             return;
         }
@@ -103,7 +103,7 @@ public class Class {
     }
     
     public void desassociateStudent(Student st){
-        if(!students.isEmpty()){
+        if(students.isEmpty()){
             System.err.println("Class already empty!\nCan't remove more students.");
             return;
         }
