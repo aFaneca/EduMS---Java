@@ -5,6 +5,15 @@
  */
 package edums.GUI;
 
+import edums.Student;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Diogo
@@ -44,6 +53,7 @@ public class Frame extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 800, 600));
         setResizable(false);
 
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jTabbedPane1.setName(""); // NOI18N
 
         jTextArea1.setColumns(20);
@@ -52,12 +62,11 @@ public class Frame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Home", jScrollPane1);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         StudentsList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Name", "Birth Date", "ID"
@@ -117,13 +126,13 @@ public class Frame extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(AddStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(AddStudentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                                 .addGap(46, 46, 46)
                                 .addComponent(EditStudentButton)
                                 .addGap(44, 44, 44)
                                 .addComponent(RemoveStudentButton))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +146,7 @@ public class Frame extends javax.swing.JFrame {
                     .addComponent(AddStudentButton)
                     .addComponent(EditStudentButton)
                     .addComponent(RemoveStudentButton))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Students", jPanel1);
@@ -146,11 +155,11 @@ public class Frame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 547, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 327, Short.MAX_VALUE)
+            .addGap(0, 325, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Classes", jPanel2);
@@ -183,11 +192,25 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EditStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditStudentButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_EditStudentButtonActionPerformed
 
     private void AddStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStudentButtonActionPerformed
-        // TODO add your handling code here:
+        
+        DefaultTableModel model = (DefaultTableModel) StudentsList.getModel();
+        Date d1 = null;
+        try {
+            d1 = Student.getDateFormat().parse("29/11/2017");
+        } catch (ParseException ex) {
+            Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Student st = new Student("Jon",Student.getDateFormat().format(d1), 0);
+        
+        Vector v = new Vector(3);
+        v.addElement(st.getName());
+        v.addElement(st.getBirthday());
+        v.addElement(st.getContact());
+        model.addRow(v);
     }//GEN-LAST:event_AddStudentButtonActionPerformed
 
     /**
