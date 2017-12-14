@@ -24,7 +24,8 @@ public class SchoolTest {
     School s;
     Date d1;
     Student st1, st2;
-    Class c1, c2;
+    Class c1;
+    Class c2;
     List<Student> l1;
     List <Class> l2;
     
