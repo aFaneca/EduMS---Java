@@ -48,6 +48,8 @@ public class Class {
         return maxStudents;
     }
     public Student getStudent(int id){return students.get(id);}
+
+    public int getId() {return id;}
     
     
     public void setUnitDenomination(String unitDenomination) {
