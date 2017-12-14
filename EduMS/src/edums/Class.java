@@ -5,6 +5,7 @@
  */
 package edums;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Diogo
  */
-public class Class {
+public class Class implements Serializable{
     String unitDenomination, typeClass, curricularUnit;
     int hoursPerClass, classesPerWeek, maxStudents;
     List<Student> students;
