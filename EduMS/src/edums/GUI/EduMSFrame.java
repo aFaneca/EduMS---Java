@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Diogo
  */
-public class Frame extends javax.swing.JFrame {
+public class EduMSFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form Frame
      */
-    public Frame() {
+    public EduMSFrame() {
         initComponents();
     }
 
@@ -192,25 +192,13 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EditStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditStudentButtonActionPerformed
-        
+        EditStudentFrame ed = new EditStudentFrame();
+        ed.setVisible(true);
     }//GEN-LAST:event_EditStudentButtonActionPerformed
 
     private void AddStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStudentButtonActionPerformed
-        
-        DefaultTableModel model = (DefaultTableModel) StudentsList.getModel();
-        Date d1 = null;
-        try {
-            d1 = Student.getDateFormat().parse("29/11/2017");
-        } catch (ParseException ex) {
-            Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Student st = new Student("Jon",Student.getDateFormat().format(d1), 0);
-        
-        Vector v = new Vector(3);
-        v.addElement(st.getName());
-        v.addElement(st.getBirthday());
-        v.addElement(st.getContact());
-        model.addRow(v);
+        AddStudentFrame ad = new AddStudentFrame();
+        ad.setVisible(true);
     }//GEN-LAST:event_AddStudentButtonActionPerformed
 
     /**
@@ -230,20 +218,22 @@ public class Frame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EduMSFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EduMSFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EduMSFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EduMSFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frame().setVisible(true);
+                EduMSFrame f = new EduMSFrame();
+                f.setVisible(true);
             }
         });
     }
@@ -262,4 +252,5 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
 }

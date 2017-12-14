@@ -13,12 +13,12 @@ import javax.swing.JFrame;
  *
  * @author Diogo
  */
-public class EditStudentFrame extends javax.swing.JFrame {
+public class AddStudentFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form EditStudentFrame
      */
-    public EditStudentFrame() {
+    public AddStudentFrame() {
         initComponents();
     }
 
@@ -46,7 +46,7 @@ public class EditStudentFrame extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 800, 600));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Edit Student");
+        jLabel1.setText("Add Student");
 
         jLabel2.setText("Name:");
 
@@ -60,12 +60,7 @@ public class EditStudentFrame extends javax.swing.JFrame {
             }
         });
 
-        AddStudentButton.setText("Edit Student");
-        AddStudentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddStudentButtonActionPerformed(evt);
-            }
-        });
+        AddStudentButton.setText("Add Student");
 
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -153,16 +148,12 @@ public class EditStudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
-        Frame fr[] = EditStudentFrame.getFrames();
+        Frame fr[] = AddStudentFrame.getFrames();
         for (Frame f : fr) {
-            if(f instanceof EditStudentFrame)
+            if(f instanceof AddStudentFrame)
                 f.dispose();
         }
     }//GEN-LAST:event_CancelButtonActionPerformed
-
-    private void AddStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStudentButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddStudentButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,20 +172,21 @@ public class EditStudentFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditStudentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddStudentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditStudentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddStudentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditStudentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddStudentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditStudentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddStudentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditStudentFrame().setVisible(true);
+                new AddStudentFrame().setVisible(true);
             }
         });
     }
