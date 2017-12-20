@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edums;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -11,7 +12,7 @@ import java.util.*;
  *
  * @author Diogo
  */
-public class Student {
+public class Student implements Serializable{
     private final int id;
     private static int idTotal = 0;
     private String name;
@@ -59,6 +60,10 @@ public class Student {
     public String getBirthday() {return birthday;}
     public int getContact() {return contact;}
     public static SimpleDateFormat getDateFormat(){return dateFormat;}
+
+    public int getId() {return id;}
+    
+    
     // SETTERS
     public void setContact(int contact) {
         if((contact/100000000.0)<1.0 || (contact/100000000.0)>10.0){
@@ -71,6 +76,7 @@ public class Student {
     public void setName(String name) {this.name = name;}
     public static void setDateFormat(SimpleDateFormat format){dateFormat = format;}
     
+   
     
     
    @Override

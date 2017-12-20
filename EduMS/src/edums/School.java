@@ -5,6 +5,7 @@
  */
 package edums;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.*;
 
 
@@ -36,8 +37,15 @@ public class School implements Serializable{
         cUnits.add("Introdução à Inteligência Artificial");
   
     }
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) throws ParseException {
+        DB db1 = new DB("teste.bin");
+        School s  = new School("ESCOLA TESTE");
+        s.addClass(new Class("A", "B", "C", 1, 2));
+        s.addClass(new Class("D", "E", "F", 3, 4));
+        Date d1 = Student.getDateFormat().parse("29/01/1997");
+        s.addStudent(new Student ("A",Student.getDateFormat().format(d1), 1));
+        s.addStudent(new Student ("B",Student.getDateFormat().format(d1), 911909187));
+        db1.exportData(s);
         
     }
     
