@@ -143,7 +143,6 @@ public class ClassTest {
         String result = c.getCurricularUnit();
         assertEquals(expected, result);
     }
-
     /**
      * Test of setHoursPerClass method, of class Class.
      */

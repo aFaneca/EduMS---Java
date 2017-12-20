@@ -57,9 +57,8 @@ public class StudentTest {
         assertEquals(expected, result);
         
     }
-
     /**
-     * Test of getName method, of class Student.
+     * Test of GetName method, of class Student.
      */
     @Test
     public void testGetName() {
@@ -127,7 +126,17 @@ public class StudentTest {
         String result = std1.getName();
         assertEquals(expected, result);
     }
-
+    /**
+     * Test of setName method, of class Student.
+     */
+    @Test
+    public void testAccentuation(){
+        System.out.println("Testing accentuation");
+        std1.setName("António João");
+        String expected = "António João";
+        String result = std1.getName();
+        assertEquals(expected, result);
+    }
     /**
      * Test of toString method, of class Student.
      */
@@ -142,5 +151,5 @@ public class StudentTest {
         String result = std1.toString();
         assertEquals(expected, result);
     }
-    
+   
 }

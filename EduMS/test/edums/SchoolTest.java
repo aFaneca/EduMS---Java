@@ -75,7 +75,6 @@ public class SchoolTest {
         s.addClass(c1);
         int expected = 1;
         int result = s.getClasses().size();
-        
         assertEquals(expected, result);
     }
 
