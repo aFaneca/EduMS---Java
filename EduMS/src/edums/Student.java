@@ -18,7 +18,7 @@ public class Student implements Serializable{
     private String name;
     String birthday;
     int contact;
-    static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");;
+    static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     
     public Student(String name, String birthday, int contact){
         this.id = idTotal++;
@@ -75,6 +75,10 @@ public class Student implements Serializable{
     public void setBirthday(String birthday) {this.birthday = birthday;}
     public void setName(String name) {this.name = name;}
     public static void setDateFormat(SimpleDateFormat format){dateFormat = format;}
+
+    public static void setIdTotal(int idTotal) {
+        Student.idTotal = idTotal;
+    }
     
    
     

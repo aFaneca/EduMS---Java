@@ -16,8 +16,12 @@ public class School implements Serializable{
     private List<Class> classes;
     private List<String> cUnits;
     private final String name;
+    private static String fileName;
+    public static DB db1;
     
     public School(String name){
+        db1 = new DB("teste.bin");
+        fileName = "teste.bin";
         this.name = name;
         students = new ArrayList<Student>();
         classes = new ArrayList<Class>();
@@ -38,7 +42,7 @@ public class School implements Serializable{
   
     }
     public static void main(String[] args) throws ParseException {
-        DB db1 = new DB("teste.bin");
+        db1 = new DB("teste.bin");
         School s  = new School("ESCOLA TESTE");
         s.addClass(new Class("A", "B", "C", 1, 2));
         s.addClass(new Class("D", "E", "F", 3, 4));
@@ -51,7 +55,9 @@ public class School implements Serializable{
     
     
     public void addStudent(Student student){
+        System.out.println(""+this.name);
         students.add(student);
+        //db1.exportData(this);
     }
     
     public void addClass(Class c){
@@ -85,6 +91,11 @@ public class School implements Serializable{
         else
             System.err.println("Class wasn't found.");
     }
+
+    public String getName() {
+        return name;
+    }
+    
     
     
     @Override

@@ -5,6 +5,7 @@
  */
 package edums.GUI;
 
+import edums.School;
 import edums.Student;
 import java.awt.Frame;
 import java.text.ParseException;
@@ -21,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EduMSFrame extends javax.swing.JFrame {
 
+    private edums.School s1;
     /**
      * Creates new form Frame
      */
@@ -259,6 +261,11 @@ public class EduMSFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public School getSchool() {
+        return s1;
+    }
+    
+    
     private void EditStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditStudentButtonActionPerformed
         EditStudentFrame ed = new EditStudentFrame();
         ed.setVisible(true);
@@ -276,14 +283,15 @@ public class EduMSFrame extends javax.swing.JFrame {
     
     
     
-    private void updateList() {
+    public void updateList() {
         edums.DB db1 = new edums.DB("teste.bin");
        // edums.Class c = new edums.Class("A", "B", "C", 1, 2);
-        edums.School s1 = new edums.School("TESTEE");
         s1 = db1.importData();
-        
+        Student.setIdTotal(s1.getStudents().size());
+        edums.Class.setTotal(s1.getClasses().size());
         //CLASSES
         DefaultTableModel ClassesModel = (DefaultTableModel) ClassesList.getModel();
+        ClassesModel.setRowCount(0);
         
         for(int i = 0; i < s1.getClasses().size();i++){
             Vector v = new Vector(6);
@@ -296,10 +304,15 @@ public class EduMSFrame extends javax.swing.JFrame {
             v.addElement(s1.getClasses().get(i).getClassesPerWeek());
             ClassesModel.addRow(v);
         }
-        
+        System.out.println("12344321");
         //STUDENTS
         DefaultTableModel StudentsModel = (DefaultTableModel) StudentsList.getModel();
-        
+        StudentsModel.setRowCount(0);
+        /*for (int i = StudentsList.getRowCount();i>=0 ; i--) {
+            System.out.println(""+StudentsList.getRowCount());
+            StudentsModel.removeRow(i);
+            
+        }*/
         for(int i = 0; i < s1.getStudents().size();i++){
             Vector v = new Vector(3);
             

@@ -95,6 +95,10 @@ public class Class implements Serializable{
         }
         this.maxStudents = maxStudents;
     }
+
+    public static void setTotal(int total) {
+        Class.total = total;
+    }
     
     
     public void associateStudent(Student st){
