@@ -20,6 +20,9 @@ public class AddStudentFrame extends javax.swing.JFrame {
      */
     public AddStudentFrame() {
         initComponents();
+        nameLabel.setVisible(false);
+        contactLabel.setVisible(false);
+        birthdateLabel.setVisible(false);
     }
 
     /**
@@ -41,6 +44,9 @@ public class AddStudentFrame extends javax.swing.JFrame {
         AddStudentButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
         birthdateDC = new com.toedter.calendar.JDateChooser();
+        nameLabel = new javax.swing.JLabel();
+        contactLabel = new javax.swing.JLabel();
+        birthdateLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 800, 600));
@@ -74,6 +80,12 @@ public class AddStudentFrame extends javax.swing.JFrame {
             }
         });
 
+        nameLabel.setText("jLabel5");
+
+        contactLabel.setText("jLabel5");
+
+        birthdateLabel.setText("jLabel6");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -89,14 +101,18 @@ public class AddStudentFrame extends javax.swing.JFrame {
                             .addComponent(CancelButton)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
+                                    .addComponent(jLabel3))
                                 .addGap(27, 27, 27)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nameTF)
-                                    .addComponent(contactTF, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(birthdateDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(nameTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(nameLabel)
+                                        .addComponent(contactTF, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(birthdateDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(contactLabel)
+                                        .addComponent(birthdateLabel)))))))
                 .addContainerGap(124, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -108,19 +124,25 @@ public class AddStudentFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                .addGap(3, 3, 3)
+                .addComponent(nameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(contactTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(1, 1, 1)
+                .addComponent(contactLabel)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(birthdateDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(birthdateLabel)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddStudentButton)
                     .addComponent(CancelButton))
@@ -157,23 +179,45 @@ public class AddStudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void AddStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStudentButtonActionPerformed
-        Student st = new Student(nameTF.getText(),Student.getDateFormat().format(birthdateDC.getDate()),Integer.parseInt(contactTF.getText()));
-        System.out.println(""+birthdateDC.getDateFormatString()+"   "+st.getBirthday());
-        EduMSFrame temp = null;
-        Frame fr[] = AddStudentFrame.getFrames();
-        DB tempDB = new DB("teste.bin");
-        for (Frame f : fr) {
-            if(f instanceof EduMSFrame){
-                temp = (EduMSFrame) f;
-                temp.getSchool().addStudent(st);
-                tempDB.exportData(temp.getSchool());
-            }
+        boolean isValid = true;
+        nameLabel.setVisible(false);
+        contactLabel.setVisible(false);
+        birthdateLabel.setVisible(false);
+        
+        if(nameTF.getText().isEmpty()){
+            nameLabel.setText("* name field required!");
+            nameLabel.setVisible(true);
+            isValid = false;
         }
-        System.out.println(""+temp.getSchool().getName());
-        temp.updateList();
-        for (Frame f : fr) {
-            if(f instanceof AddStudentFrame)
-                f.dispose();
+        if(contactTF.getText().length() != 9 && contactTF.getText().length() != 0 ){
+                contactLabel.setText("* contact number must have 9 digits!");
+                contactLabel.setVisible(true);
+                isValid = false;
+        }
+        if(birthdateDC.isValid()){
+            birthdateLabel.setText("* birth date required!");
+            birthdateLabel.setVisible(true);
+            isValid = false;
+        }
+        if(isValid){
+            Student st = new Student(nameTF.getText(),Student.getDateFormat().format(birthdateDC.getDate()),Integer.parseInt(contactTF.getText()));
+            System.out.println(""+birthdateDC.getDateFormatString()+"   "+st.getBirthday());
+            EduMSFrame temp = null;
+            Frame fr[] = AddStudentFrame.getFrames();
+            DB tempDB = new DB("teste.bin");
+            for (Frame f : fr) {
+                if(f instanceof EduMSFrame){
+                    temp = (EduMSFrame) f;
+                    temp.getSchool().addStudent(st);
+                    tempDB.exportData(temp.getSchool());
+                }
+            }
+            System.out.println(""+temp.getSchool().getName());
+            temp.updateList();
+            for (Frame f : fr) {
+                if(f instanceof AddStudentFrame)
+                    f.dispose();
+            }
         }
     }//GEN-LAST:event_AddStudentButtonActionPerformed
 
@@ -217,12 +261,15 @@ public class AddStudentFrame extends javax.swing.JFrame {
     private javax.swing.JButton AddStudentButton;
     private javax.swing.JButton CancelButton;
     private com.toedter.calendar.JDateChooser birthdateDC;
+    private javax.swing.JLabel birthdateLabel;
+    private javax.swing.JLabel contactLabel;
     private javax.swing.JTextField contactTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTF;
     // End of variables declaration//GEN-END:variables
 }
