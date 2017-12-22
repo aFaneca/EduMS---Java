@@ -6,11 +6,8 @@
 package edums.GUI;
 
 import edums.DB;
-import edums.School;
 import edums.Student;
 import java.awt.Frame;
-import java.text.SimpleDateFormat;
-import javax.swing.JFrame;
 
 /**
  *

@@ -5,6 +5,7 @@
  */
 package edums.GUI;
 
+import edums.DB;
 import edums.School;
 import edums.Student;
 import java.awt.Frame;
@@ -126,6 +127,11 @@ public class EduMSFrame extends javax.swing.JFrame {
         });
 
         RemoveStudentButton.setText("Remove Student");
+        RemoveStudentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemoveStudentButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -265,9 +271,16 @@ public class EduMSFrame extends javax.swing.JFrame {
         return s1;
     }
     
+    private void RemoveStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+        s1.removeStudent(s1.getStudents().get(StudentsList.getSelectedRow()));
+        DB tempDB = new DB("teste.bin");
+        tempDB.exportData(s1);
+        updateList();
+    } 
     
     private void EditStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditStudentButtonActionPerformed
-        EditStudentFrame ed = new EditStudentFrame();
+        Student st = s1.getStudents().get(StudentsList.getSelectedRow());
+        EditStudentFrame ed = new EditStudentFrame(st);
         ed.setVisible(true);
     }//GEN-LAST:event_EditStudentButtonActionPerformed
 
@@ -279,6 +292,10 @@ public class EduMSFrame extends javax.swing.JFrame {
     private void AddStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStudentButtonActionPerformed
 
     }//GEN-LAST:event_AddStudentButtonActionPerformed
+
+    private void RemoveStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveStudentButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RemoveStudentButtonActionPerformed
 */
     
     
