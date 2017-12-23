@@ -364,7 +364,6 @@ public class EduMSFrame extends javax.swing.JFrame {
             v.addElement(s1.getClasses().get(i).getClassesPerWeek());
             ClassesModel.addRow(v);
         }
-        System.out.println("12344321");
         //STUDENTS
         DefaultTableModel StudentsModel = (DefaultTableModel) StudentsList.getModel();
         StudentsModel.setRowCount(0);

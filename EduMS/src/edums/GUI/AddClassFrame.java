@@ -7,10 +7,15 @@ package edums.GUI;
 
 import edums.DB;
 import edums.Class;
+import edums.Student;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+import java.awt.List.*;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,15 +24,18 @@ import javax.swing.DefaultComboBoxModel;
 public class AddClassFrame extends javax.swing.JFrame {    
     DB tempDB = new DB("teste.bin");
     edums.School s = new edums.School("School");    
-     
+    List<Student> students;
       
     
     public AddClassFrame() {
         initComponents();
         s = tempDB.importData();
+        students = new ArrayList<>();
         
         DenomLabel.setVisible(false);
         cUnitsLabel.setVisible(false);
+        pstudentsList.setVisible(false);
+        addToClass_BUTTON.setVisible(false);
 
     }
 
@@ -40,6 +48,8 @@ public class AddClassFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        popupMenu1 = new java.awt.PopupMenu();
         jSpinner2 = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jPanelCLASS = new javax.swing.JPanel();
@@ -56,6 +66,17 @@ public class AddClassFrame extends javax.swing.JFrame {
         label2 = new java.awt.Label();
         DenomLabel = new javax.swing.JLabel();
         cUnitsLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        membersList = new javax.swing.JList<>();
+        removeMemberButton = new javax.swing.JButton();
+        addMemberButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        totalMembers_LABEL = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        pstudentsList = new javax.swing.JList<>();
+        addToClass_BUTTON = new javax.swing.JButton();
+
+        popupMenu1.setLabel("popupMenu1");
 
         jLabel1.setText("jLabel1");
 
@@ -102,14 +123,46 @@ public class AddClassFrame extends javax.swing.JFrame {
 
         cUnitsLabel.setText("jLabel2");
 
+        jScrollPane1.setViewportView(membersList);
+
+        removeMemberButton.setText("Remove Member");
+
+        addMemberButton.setText("Add Member");
+        addMemberButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMemberButtonActionPerformed1(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setText("MEMBERS");
+
+        String total = "(TOTAL: " + membersList.getModel().getSize() + ")";
+        totalMembers_LABEL.setText(total);
+
+        pstudentsList.setModel(new DefaultListModel());
+        pstudentsList.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                addMemberButtonActionPerformed(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane2.setViewportView(pstudentsList);
+
+        addToClass_BUTTON.setText("Add To Class");
+        addToClass_BUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToClass_BUTTONActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCLASSLayout = new javax.swing.GroupLayout(jPanelCLASS);
         jPanelCLASS.setLayout(jPanelCLASSLayout);
         jPanelCLASSLayout.setHorizontalGroup(
             jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCLASSLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(CancelButton_CLASS)
-                .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCLASSLayout.createSequentialGroup()
                 .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelCLASSLayout.createSequentialGroup()
@@ -134,14 +187,34 @@ public class AddClassFrame extends javax.swing.JFrame {
                                 .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(hoursPClass_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(classesPWeek_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanelCLASSLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCLASSLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jSeparator1))
-                    .addGroup(jPanelCLASSLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(AddClassButton)
-                        .addGap(12, 12, 12)))
+                        .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
+                            .addGroup(jPanelCLASSLayout.createSequentialGroup()
+                                .addComponent(CancelButton_CLASS)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(AddClassButton)
+                                .addGap(12, 12, 12))
+                            .addGroup(jPanelCLASSLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanelCLASSLayout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(totalMembers_LABEL))
+                                    .addGroup(jPanelCLASSLayout.createSequentialGroup()
+                                        .addComponent(removeMemberButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(addMemberButton))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(jPanelCLASSLayout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addComponent(addToClass_BUTTON)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelCLASSLayout.setVerticalGroup(
             jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,13 +244,27 @@ public class AddClassFrame extends javax.swing.JFrame {
                         .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cUnitsLabel)
-                .addGap(80, 80, 80)
+                .addGap(28, 28, 28)
                 .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddClassButton)
-                    .addComponent(CancelButton_CLASS))
-                .addGap(18, 18, 18)
+                    .addComponent(CancelButton_CLASS)
+                    .addComponent(AddClassButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(totalMembers_LABEL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removeMemberButton)
+                    .addComponent(addMemberButton))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addToClass_BUTTON)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,7 +306,12 @@ public class AddClassFrame extends javax.swing.JFrame {
         
         if(isValid){
             Class c = new Class(DenomTEXT.getText(), TypeSELECT.getSelectedItem().toString(),cUnitSELECT.getSelectedItem().toString(), (int)hoursPClass_SPINNER.getValue(), (int)classesPWeek_SPINNER.getValue());
-
+            
+            // ASSOCIATE STUDENTS WITH THE CLASS
+            for(int i = 0; i < students.size(); i++)
+                c.associateStudent(students.get(i));
+            
+            
             EduMSFrame temp = null;
             Frame fr[] = AddClassFrame.getFrames();
             DB tempDB = new DB("teste.bin");
@@ -237,10 +329,47 @@ public class AddClassFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_AddClassButtonActionPerformed
+    
+    // MEMBERS SECTION
+    private void addMemberButtonActionPerformed(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_addMemberButtonActionPerformed
+        
+    }//GEN-LAST:event_addMemberButtonActionPerformed
+    private void updateMembersList(){
+        edums.DB db1 = new edums.DB("teste.bin");
+        s = db1.importData();
+        Student.setIdTotal(s.getStudents().size());
+        
+        DefaultListModel StudentsListModel = (DefaultListModel) pstudentsList.getModel();
+        StudentsListModel.removeAllElements();
+        
+        for(int i = 0; i < s.getStudents().size();i++){
+          StudentsListModel.addElement(s.getStudents().get(i).getName());
+        }
+    }
+    private void addMemberButtonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberButtonActionPerformed1
 
-    /**
-     * @param args the command line arguments
-     */
+        updateMembersList();
+
+        pstudentsList.setVisible(true);
+        addToClass_BUTTON.setVisible(true);
+    }//GEN-LAST:event_addMemberButtonActionPerformed1
+
+    private void addToClass_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToClass_BUTTONActionPerformed
+        edums.DB db1 = new edums.DB("teste.bin");
+        s = db1.importData();
+     
+        String student2Add = pstudentsList.getSelectedValue().toString();
+        for(int i = 0; i < s.getStudents().size(); i++){
+            if(s.getStudents().get(i).getName() ==  student2Add){
+                students.add(s.getStudents().get(i));
+            }
+        }
+        
+        updateMembersList();
+    }//GEN-LAST:event_addToClass_BUTTONActionPerformed
+
+    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -283,15 +412,26 @@ public class AddClassFrame extends javax.swing.JFrame {
     private javax.swing.JTextField DenomTEXT;
     private javax.swing.JComboBox<String> TypeSELECT;
     private javax.swing.JLabel addClassTEXT;
+    private javax.swing.JButton addMemberButton;
+    private javax.swing.JButton addToClass_BUTTON;
     private javax.swing.JComboBox<String> cUnitSELECT;
     private javax.swing.JLabel cUnitsLabel;
     private javax.swing.JSpinner classesPWeek_SPINNER;
     private javax.swing.JSpinner hoursPClass_SPINNER;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelCLASS;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner jSpinner2;
     private java.awt.Label label1;
     private java.awt.Label label2;
+    private javax.swing.JList<String> membersList;
+    private java.awt.PopupMenu popupMenu1;
+    private javax.swing.JList<String> pstudentsList;
+    private javax.swing.JButton removeMemberButton;
+    private javax.swing.JLabel totalMembers_LABEL;
     // End of variables declaration//GEN-END:variables
 }
