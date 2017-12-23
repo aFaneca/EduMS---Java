@@ -16,8 +16,10 @@ public class School implements Serializable{
     private List<Class> classes;
     private List<String> cUnits;
     private final String name;
-    
+    private static DB db1;
+     
     public School(String name){
+        db1 = new DB("teste.bin");
         this.name = name;
         students = new ArrayList<Student>();
         classes = new ArrayList<Class>();
@@ -38,7 +40,7 @@ public class School implements Serializable{
   
     }
     public static void main(String[] args) throws ParseException {
-        DB db1 = new DB("teste.bin");
+        
         School s  = new School("ESCOLA TESTE");
         s.addClass(new Class("A", "B", "C", 1, 2));
         s.addClass(new Class("D", "E", "F", 3, 4));
@@ -52,6 +54,7 @@ public class School implements Serializable{
     
     public void addStudent(Student student){
         students.add(student);
+        db1.exportData(this);
     }
     
     public void addClass(Class c){

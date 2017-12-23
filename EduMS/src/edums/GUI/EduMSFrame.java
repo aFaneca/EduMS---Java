@@ -5,6 +5,7 @@
  */
 package edums.GUI;
 
+import edums.School;
 import edums.Student;
 import java.awt.Frame;
 import java.text.ParseException;
@@ -24,6 +25,9 @@ public class EduMSFrame extends javax.swing.JFrame {
     /**
      * Creates new form Frame
      */
+    
+     edums.School s1;
+     
     public EduMSFrame() {
         initComponents();
     }
@@ -276,11 +280,11 @@ public class EduMSFrame extends javax.swing.JFrame {
     
     
     
-    private void updateList() {
+    public void updateList() {
         edums.DB db1 = new edums.DB("teste.bin");
        // edums.Class c = new edums.Class("A", "B", "C", 1, 2);
-        edums.School s1 = new edums.School("TESTEE");
-        s1 = db1.importData();
+       s1 = new edums.School("TESTEE");
+       s1 = db1.importData();
         
         //CLASSES
         DefaultTableModel ClassesModel = (DefaultTableModel) ClassesList.getModel();
@@ -350,6 +354,12 @@ public class EduMSFrame extends javax.swing.JFrame {
             }
         });
     }
+
+    public School getSchool() {
+        return s1;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddStudentButton;
