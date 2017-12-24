@@ -53,7 +53,7 @@ public class EduMSFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ClassesList = new javax.swing.JTable();
-        addClassButton = new javax.swing.JButton();
+        AddClassButton = new javax.swing.JButton();
         editClassButton = new javax.swing.JButton();
         removeClassButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -196,11 +196,26 @@ public class EduMSFrame extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(ClassesList);
 
-        addClassButton.setText("Add Class");
+        AddClassButton.setText("Add Class");
+        AddClassButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddClassButtonActionPerformed(evt);
+            }
+        });
 
         editClassButton.setText("Edit Class");
+        editClassButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditClassButtonActionPerformed(evt);
+            }
+        });
 
         removeClassButton.setText("Remove Class");
+        removeClassButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeClassButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel3.setText("Classes Management");
@@ -215,7 +230,7 @@ public class EduMSFrame extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(addClassButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddClassButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(74, 74, 74)
                             .addComponent(editClassButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -232,7 +247,7 @@ public class EduMSFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addClassButton)
+                    .addComponent(AddClassButton)
                     .addComponent(editClassButton)
                     .addComponent(removeClassButton))
                 .addContainerGap(37, Short.MAX_VALUE))
@@ -287,15 +302,43 @@ public class EduMSFrame extends javax.swing.JFrame {
     private void AddStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         AddStudentFrame ad = new AddStudentFrame();
         ad.setVisible(true);
-    }                                                 
+    }
+    
+    private void AddClassButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        AddClassFrame ad = new AddClassFrame();
+        ad.setVisible(true);
+    }  
+    private void removeClassButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+        s1.removeClass(s1.getClasses().get(ClassesList.getSelectedRow()));
+        DB tempDB = new DB("teste.bin");
+        tempDB.exportData(s1);
+        updateList();
+    } 
+  
+    private void EditClassButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        edums.Class c1 = s1.getClasses().get(ClassesList.getSelectedRow());
+        EditClassFrame edc = new EditClassFrame(c1);
+        edc.setVisible(true);
+    }     
+    
 /*
     private void AddStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStudentButtonActionPerformed
-
     }//GEN-LAST:event_AddStudentButtonActionPerformed
-
     private void RemoveStudentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveStudentButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RemoveStudentButtonActionPerformed
+
+    private void AddClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddClassButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddClassButtonActionPerformed
+
+    private void removeClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClassButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeClassButtonActionPerformed
+
+    private void EditClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditClassButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditClassButtonActionPerformed
 */
     
     
@@ -321,7 +364,6 @@ public class EduMSFrame extends javax.swing.JFrame {
             v.addElement(s1.getClasses().get(i).getClassesPerWeek());
             ClassesModel.addRow(v);
         }
-        System.out.println("12344321");
         //STUDENTS
         DefaultTableModel StudentsModel = (DefaultTableModel) StudentsList.getModel();
         StudentsModel.setRowCount(0);
@@ -382,12 +424,12 @@ public class EduMSFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddClassButton;
     private javax.swing.JButton AddStudentButton;
     private javax.swing.JTable ClassesList;
     private javax.swing.JButton EditStudentButton;
     private javax.swing.JButton RemoveStudentButton;
     private javax.swing.JTable StudentsList;
-    private javax.swing.JButton addClassButton;
     private javax.swing.JButton editClassButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
