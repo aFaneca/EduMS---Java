@@ -46,6 +46,8 @@ public class School implements Serializable{
         School s  = new School("ESCOLA TESTE");
         s.addClass(new Class("A", "B", "C", 1, 2));
         s.addClass(new Class("D", "E", "F", 3, 4));
+        s.getClasses().get(0).setMaxStudents(6);
+        s.getClasses().get(1).setMaxStudents(6);
         Date d1 = Student.getDateFormat().parse("29/01/1997");
         s.addStudent(new Student ("A",Student.getDateFormat().format(d1), 1));
         s.addStudent(new Student ("B",Student.getDateFormat().format(d1), 911909187));

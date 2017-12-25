@@ -36,10 +36,16 @@ public class EditClassFrame extends javax.swing.JFrame {
         this.EDIT_cUnitSELECT.setSelectedItem(c1.getCurricularUnit());
         this.EDIT_classesPWeek_SPINNER.setValue(c1.getClassesPerWeek());
         this.EDIT_hoursPClass_SPINNER.setValue(c1.getHoursPerClass());
-     
+        
+        for (int i = 0; i < c1.getNumStudents(); i++) {
+            students.add(c1.getStudent(i));
+        }
+        
         DenomLabel.setVisible(false);
-        cUnitsLabel.setVisible(false);
-
+        pstudentsList.setVisible(false);
+        addToClass_BUTTON.setVisible(false);
+        
+        updateMembersList();
     }
 
     /**
@@ -66,7 +72,6 @@ public class EditClassFrame extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
         DenomLabel = new javax.swing.JLabel();
-        cUnitsLabel = new javax.swing.JLabel();
         totalMembers_LABEL = new javax.swing.JLabel();
         addToClass_BUTTON = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -120,8 +125,6 @@ public class EditClassFrame extends javax.swing.JFrame {
 
         DenomLabel.setText("jLabel1");
 
-        cUnitsLabel.setText("jLabel2");
-
         String total = "(TOTAL: " + membersList.getModel().getSize() + ")";
         totalMembers_LABEL.setText(total);
 
@@ -145,6 +148,11 @@ public class EditClassFrame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(pstudentsList);
 
         removeMemberButton.setText("Remove Member");
+        removeMemberButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeMemberButtonActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(membersList);
 
@@ -176,12 +184,11 @@ public class EditClassFrame extends javax.swing.JFrame {
                                         .addComponent(EDIT_DenomTEXT, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(27, 27, 27)
                                         .addComponent(EDIT_TypeSELECT, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(DenomLabel)
-                                    .addComponent(cUnitsLabel))
+                                    .addComponent(DenomLabel))
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(EDIT_hoursPClass_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,27 +232,25 @@ public class EditClassFrame extends javax.swing.JFrame {
                         .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(EDIT_TypeSELECT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(EDIT_DenomTEXT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EDIT_hoursPClass_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(EDIT_hoursPClass_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addComponent(DenomLabel))
                     .addGroup(jPanelCLASSLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(1, 1, 1)
-                .addComponent(DenomLabel)
                 .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCLASSLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(EDIT_cUnitSELECT, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EDIT_classesPWeek_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(EDIT_classesPWeek_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(69, 69, 69)
+                        .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CancelButton_CLASS)
+                            .addComponent(EditClassButton)))
                     .addGroup(jPanelCLASSLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cUnitsLabel)
-                .addGap(47, 47, 47)
-                .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CancelButton_CLASS)
-                    .addComponent(EditClassButton))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
@@ -293,14 +298,13 @@ public class EditClassFrame extends javax.swing.JFrame {
     private void EditClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditClassButtonActionPerformed
         boolean isValid = true;
         DenomLabel.setVisible(false);
-        cUnitsLabel.setVisible(false);
-        
         
         if(EDIT_DenomTEXT.getText().isEmpty()){
             DenomLabel.setText("* Denomination field required!");
             DenomLabel.setVisible(true);
             isValid = false;
         }
+        System.out.println(""+EDIT_classesPWeek_SPINNER.equals(0)); //Tenho que ir buscar o model para obter o valor
         
         if(isValid){
             EduMSFrame temp = null;
@@ -337,7 +341,17 @@ public class EditClassFrame extends javax.swing.JFrame {
         StudentsListModel.removeAllElements();
         
         for(int i = 0; i < s.getStudents().size();i++){
-          StudentsListModel.addElement(s.getStudents().get(i).getName());
+            StudentsListModel.addElement(s.getStudents().get(i).getName());
+        }
+        for (int i = 0; i < students.size(); i++) {
+            StudentsListModel.removeElement(students.get(i).getName());
+        }
+        membersList.setModel(new DefaultListModel());
+        DefaultListModel membersListModel = (DefaultListModel) membersList.getModel();
+        membersListModel.removeAllElements();
+
+        for(int i = 0; i < students.size();i++){
+          membersListModel.addElement(students.get(i).getName());
         }
     }
     
@@ -354,7 +368,7 @@ public class EditClassFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_pstudentsListaddMemberButtonActionPerformed
 
     private void addToClass_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToClass_BUTTONActionPerformed
-        edums.DB db1 = new edums.DB("teste.bin");
+        /*edums.DB db1 = new edums.DB("teste.bin");
         s = db1.importData();
 
         String student2Add = pstudentsList.getSelectedValue().toString();
@@ -364,8 +378,25 @@ public class EditClassFrame extends javax.swing.JFrame {
             }
         }
 
+        updateMembersList();*/
+        for(int i = 0; i < s.getStudents().size(); i++){
+            if(s.getStudents().get(i).getName().equals(pstudentsList.getSelectedValue())){
+                c1.associateStudent(s.getStudents().get(i));
+                students.add(s.getStudents().get(i));
+            }
+        }
         updateMembersList();
     }//GEN-LAST:event_addToClass_BUTTONActionPerformed
+
+    private void removeMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMemberButtonActionPerformed
+        for(int i = 0; i < students.size(); i++){
+            if(students.get(i).getName().equals(membersList.getSelectedValue())){
+                c1.desassociateStudent(students.get(i));
+                students.remove(students.get(i));
+            }
+        }
+        updateMembersList();
+    }//GEN-LAST:event_removeMemberButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -427,7 +458,6 @@ public class EditClassFrame extends javax.swing.JFrame {
     private javax.swing.JLabel addClassTEXT;
     private javax.swing.JButton addMemberButton;
     private javax.swing.JButton addToClass_BUTTON;
-    private javax.swing.JLabel cUnitsLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelCLASS;

@@ -49,6 +49,8 @@ public class Class implements Serializable{
         return maxStudents;
     }
     public Student getStudent(int id){return students.get(id);}
+    
+    public int getNumStudents(){return students.size();}
 
     public int getId() {return id;}
     

@@ -8,13 +8,7 @@ package edums.GUI;
 import edums.DB;
 import edums.School;
 import edums.Student;
-import java.awt.Frame;
-import java.text.ParseException;
-import java.util.Date;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -102,11 +96,6 @@ public class EduMSFrame extends javax.swing.JFrame {
         StudentsList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(StudentsList);
         StudentsList.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (StudentsList.getColumnModel().getColumnCount() > 0) {
-            StudentsList.getColumnModel().getColumn(0).setHeaderValue("Name");
-            StudentsList.getColumnModel().getColumn(1).setHeaderValue("Birth Date");
-            StudentsList.getColumnModel().getColumn(2).setHeaderValue("ID");
-        }
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setText("Students Management");
