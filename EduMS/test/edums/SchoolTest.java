@@ -189,7 +189,7 @@ public class SchoolTest {
     @Test
     public void testGetcUnits() {
         System.out.println("Testing getcUnits...");
-        int expected = 13;
+        int expected = 30; // ATUALIZAR VALORES
         int result = s.getcUnits().size();
         assertEquals(expected, result);
     }
