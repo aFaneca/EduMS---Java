@@ -343,7 +343,17 @@ public class AddClassFrame extends javax.swing.JFrame {
         StudentsListModel.removeAllElements();
         
         for(int i = 0; i < s.getStudents().size();i++){
-          StudentsListModel.addElement(s.getStudents().get(i).getName());
+            StudentsListModel.addElement(s.getStudents().get(i).getName());
+        }
+        for (int i = 0; i < students.size(); i++) {
+            StudentsListModel.removeElement(students.get(i).getName());
+        }
+        membersList.setModel(new DefaultListModel());
+        DefaultListModel membersListModel = (DefaultListModel) membersList.getModel();
+        membersListModel.removeAllElements();
+
+        for(int i = 0; i < students.size();i++){
+          membersListModel.addElement(students.get(i).getName());
         }
     }
     private void addMemberButtonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberButtonActionPerformed1
@@ -360,7 +370,7 @@ public class AddClassFrame extends javax.swing.JFrame {
      
         String student2Add = pstudentsList.getSelectedValue().toString();
         for(int i = 0; i < s.getStudents().size(); i++){
-            if(s.getStudents().get(i).getName() ==  student2Add){
+            if(s.getStudents().get(i).getName().equals(student2Add)){
                 students.add(s.getStudents().get(i));
             }
         }
