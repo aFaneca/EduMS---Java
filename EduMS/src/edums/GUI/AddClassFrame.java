@@ -75,6 +75,8 @@ public class AddClassFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         pstudentsList = new javax.swing.JList<>();
         addToClass_BUTTON = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        capacitySPINNER = new javax.swing.JSpinner();
 
         popupMenu1.setLabel("popupMenu1");
 
@@ -159,6 +161,12 @@ public class AddClassFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Capacity:");
+
+        capacitySPINNER.setModel(new javax.swing.SpinnerNumberModel(1, 1, 40, 1));
+
         javax.swing.GroupLayout jPanelCLASSLayout = new javax.swing.GroupLayout(jPanelCLASS);
         jPanelCLASS.setLayout(jPanelCLASSLayout);
         jPanelCLASSLayout.setHorizontalGroup(
@@ -182,11 +190,13 @@ public class AddClassFrame extends javax.swing.JFrame {
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(hoursPClass_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(classesPWeek_SPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(hoursPClass_SPINNER, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                                    .addComponent(classesPWeek_SPINNER, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                                    .addComponent(capacitySPINNER)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCLASSLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +219,7 @@ public class AddClassFrame extends javax.swing.JFrame {
                                         .addComponent(addMemberButton))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                                     .addComponent(jScrollPane2))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 10, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(jPanelCLASSLayout.createSequentialGroup()
                 .addGap(147, 147, 147)
@@ -243,8 +253,12 @@ public class AddClassFrame extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cUnitsLabel)
-                .addGap(28, 28, 28)
+                .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cUnitsLabel)
+                    .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(capacitySPINNER, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCLASSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelButton_CLASS)
                     .addComponent(AddClassButton))
@@ -306,7 +320,7 @@ public class AddClassFrame extends javax.swing.JFrame {
         
         if(isValid){
             Class c = new Class(DenomTEXT.getText(), TypeSELECT.getSelectedItem().toString(),cUnitSELECT.getSelectedItem().toString(), (int)hoursPClass_SPINNER.getValue(), (int)classesPWeek_SPINNER.getValue());
-            
+            c.setMaxStudents((int)capacitySPINNER.getValue());
             // ASSOCIATE STUDENTS WITH THE CLASS
             for(int i = 0; i < students.size(); i++)
                 c.associateStudent(students.get(i));
@@ -426,10 +440,12 @@ public class AddClassFrame extends javax.swing.JFrame {
     private javax.swing.JButton addToClass_BUTTON;
     private javax.swing.JComboBox<String> cUnitSELECT;
     private javax.swing.JLabel cUnitsLabel;
+    private javax.swing.JSpinner capacitySPINNER;
     private javax.swing.JSpinner classesPWeek_SPINNER;
     private javax.swing.JSpinner hoursPClass_SPINNER;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanelCLASS;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
